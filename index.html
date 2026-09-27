@@ -8,28 +8,32 @@
 
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #0b0b0b;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080808;
             color: white;
         }
 
         header {
-            background: linear-gradient(135deg, #111111, #1d1d1d);
+            background: #0d0d0d;
             padding: 25px 20px;
             text-align: center;
             border-bottom: 1px solid #333;
         }
 
         .logo {
-            font-size: 34px;
+            font-size: 32px;
             font-weight: bold;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
         }
 
         .logo span {
@@ -37,39 +41,46 @@
         }
 
         header p {
-            margin-top: 8px;
             color: #aaa;
+            margin-top: 8px;
         }
 
         .hero {
-            min-height: 480px;
+            min-height: 520px;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 40px 20px;
-            background:
-                radial-gradient(circle at center, #292929 0%, #0b0b0b 65%);
+
+            background: radial-gradient(
+                circle at center,
+                #292929 0%,
+                #111111 45%,
+                #080808 100%
+            );
+        }
+
+        .hero-content {
+            max-width: 700px;
         }
 
         .hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
+            font-size: 50px;
+            margin-bottom: 20px;
         }
 
-        .hero h1 span {
+        .gold {
             color: #d4af37;
         }
 
         .hero p {
-            font-size: 19px;
-            color: #ccc;
-            max-width: 600px;
-            margin: auto;
-            line-height: 1.6;
+            color: #cccccc;
+            font-size: 18px;
+            line-height: 1.7;
         }
 
-        .boton {
+        .button {
             display: inline-block;
             margin-top: 30px;
             padding: 15px 30px;
@@ -78,9 +89,282 @@
             text-decoration: none;
             font-weight: bold;
             border-radius: 30px;
-            transition: 0.3s;
         }
 
-        .boton:hover {
-            transform: scale(1.05);
-            background: #f0
+        .section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 70px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(230px, 1fr)
+            );
+
+            gap: 25px;
+        }
+
+        /*
+        ==========================================
+        PRODUCTOS
+        ==========================================
+
+        Cuando quieras agregar un perfume,
+        copia una tarjeta completa como esta:
+
+        <div class="product">
+            <div class="product-image">
+                FOTO
+            </div>
+
+            <h3>NOMBRE DEL PERFUME</h3>
+
+            <p>DESCRIPCIÓN DEL PERFUME</p>
+
+            <span class="price">$PRECIO</span>
+        </div>
+
+        ==========================================
+        */
+
+        .product {
+            background: #151515;
+            border: 1px solid #333;
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .product-image {
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 12px;
+            background: #0d0d0d;
+            border: 1px solid #333;
+
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .product h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .product p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .price {
+            display: block;
+            margin-top: 18px;
+            color: #d4af37;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .order {
+            text-align: center;
+            padding: 70px 20px;
+            background: #111;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .order h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .order p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .whatsapp {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 15px 30px;
+
+            background: #d4af37;
+            color: #111;
+
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #050505;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- ENCABEZADO -->
+
+    <header>
+
+        <div class="logo">
+            PRIME <span>ESSENCE</span>
+        </div>
+
+        <p>
+            La esencia que te distingue.
+        </p>
+
+    </header>
+
+
+    <!-- PORTADA -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                PRIME
+                <span class="gold">ESSENCE</span>
+            </h1>
+
+            <p>
+                Descubre una nueva forma de llevar
+                tu esencia.
+            </p>
+
+            <a href="#productos" class="button">
+                VER CATÁLOGO
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- CATÁLOGO -->
+
+    <section class="section" id="productos">
+
+        <h2 class="section-title">
+            Nuestro
+            <span class="gold">catálogo</span>
+        </h2>
+
+
+        <!--
+        AQUÍ VAS A AGREGAR TUS PRODUCTOS.
+
+        Por ahora está vacío.
+        -->
+
+
+        <div class="products">
+
+            <!--
+            EJEMPLO DE PRODUCTO:
+
+            <div class="product">
+
+                <div class="product-image">
+                    AQUÍ VA LA FOTO
+                </div>
+
+                <h3>
+                    NOMBRE DEL PERFUME
+                </h3>
+
+                <p>
+                    DESCRIPCIÓN
+                </p>
+
+                <span class="price">
+                    $000
+                </span>
+
+            </div>
+
+            -->
+
+        </div>
+
+    </section>
+
+
+    <!-- PEDIDOS -->
+
+    <section class="order">
+
+        <h2>
+            ¿Quieres hacer un pedido?
+        </h2>
+
+        <p>
+            Contáctanos para conocer nuestros
+            productos y realizar tu pedido.
+        </p>
+
+        <a
+            class="whatsapp"
+            href="https://wa.me/525577551628"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            PEDIR POR WHATSAPP
+
+        </a>
+
+    </section>
+
+
+    <!-- PIE DE PÁGINA -->
+
+    <footer>
+
+        © 2026 Prime Essence
+
+        <br><br>
+
+        La esencia que te distingue.
+
+    </footer>
+
+</body>
+</html>
