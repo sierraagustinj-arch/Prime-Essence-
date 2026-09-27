@@ -1,370 +1,775 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Prime Essence</title>
 
-    <title>Prime Essence</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    html {
+        scroll-behavior: smooth;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #080808;
+        color: white;
+    }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #080808;
-            color: white;
-        }
+    header {
+        background: #0d0d0d;
+        padding: 25px 20px;
+        text-align: center;
+        border-bottom: 1px solid #333;
+    }
 
-        header {
-            background: #0d0d0d;
-            padding: 25px 20px;
-            text-align: center;
-            border-bottom: 1px solid #333;
-        }
+    .logo {
+        font-size: 32px;
+        font-weight: bold;
+        letter-spacing: 4px;
+    }
 
-        .logo {
-            font-size: 32px;
-            font-weight: bold;
-            letter-spacing: 4px;
-        }
+    .logo span,
+    .gold {
+        color: #d4af37;
+    }
 
-        .logo span {
-            color: #d4af37;
-        }
+    header p {
+        color: #aaa;
+        margin-top: 8px;
+    }
 
-        header p {
-            color: #aaa;
-            margin-top: 8px;
-        }
+    .hero {
+        min-height: 520px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 40px 20px;
 
-        .hero {
-            min-height: 520px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
+        background: radial-gradient(
+            circle at center,
+            #292929 0%,
+            #111111 45%,
+            #080808 100%
+        );
+    }
 
-            background: radial-gradient(
-                circle at center,
-                #292929 0%,
-                #111111 45%,
-                #080808 100%
-            );
-        }
+    .hero-content {
+        max-width: 700px;
+    }
 
-        .hero-content {
-            max-width: 700px;
-        }
+    .hero h1 {
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
 
+    .hero p {
+        color: #cccccc;
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    .button,
+    .whatsapp,
+    .add-button,
+    .save-button,
+    .cancel-button,
+    .delete-button {
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 30px;
+    }
+
+    .button {
+        margin-top: 30px;
+        padding: 15px 30px;
+        background: #d4af37;
+        color: #111;
+    }
+
+    .section {
+        max-width: 1100px;
+        margin: auto;
+        padding: 70px 20px;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 25px;
+    }
+
+    .catalog-actions {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .add-button {
+        padding: 14px 25px;
+        background: #d4af37;
+        color: #111;
+        font-size: 16px;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 25px;
+    }
+
+    .product {
+        background: #151515;
+        border: 1px solid #333;
+        border-radius: 18px;
+        padding: 20px;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 12px;
+        background: #0d0d0d;
+        border: 1px solid #333;
+        margin-bottom: 20px;
+    }
+
+    .no-image {
+        height: 240px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .product h3 {
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    .product p {
+        color: #aaa;
+        line-height: 1.6;
+    }
+
+    .price {
+        display: block;
+        margin-top: 18px;
+        color: #d4af37;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .delete-button {
+        margin-top: 18px;
+        padding: 10px 18px;
+        background: #8b1e1e;
+        color: white;
+        font-size: 14px;
+    }
+
+    .empty {
+        text-align: center;
+        color: #777;
+        padding: 40px 10px;
+        grid-column: 1 / -1;
+    }
+
+    .order {
+        text-align: center;
+        padding: 70px 20px;
+        background: #111;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #333;
+    }
+
+    .order h2 {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+
+    .order p {
+        color: #aaa;
+        line-height: 1.6;
+    }
+
+    .whatsapp {
+        margin-top: 25px;
+        padding: 15px 30px;
+        background: #d4af37;
+        color: #111;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px 20px;
+        background: #050505;
+        color: #777;
+    }
+
+    /* VENTANA PARA AGREGAR PRODUCTO */
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        inset: 0;
+        background: rgba(0,0,0,0.85);
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-width: 500px;
+        max-height: 90vh;
+        overflow-y: auto;
+        background: #151515;
+        border: 1px solid #444;
+        border-radius: 20px;
+        padding: 30px;
+    }
+
+    .modal-content h2 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #ddd;
+        font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 13px;
+        border: 1px solid #444;
+        border-radius: 10px;
+        background: #0d0d0d;
+        color: white;
+        font-size: 16px;
+        outline: none;
+    }
+
+    .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .form-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .save-button,
+    .cancel-button {
+        flex: 1;
+        padding: 14px;
+    }
+
+    .save-button {
+        background: #d4af37;
+        color: #111;
+    }
+
+    .cancel-button {
+        background: #333;
+        color: white;
+    }
+
+    @media (max-width: 600px) {
         .hero h1 {
-            font-size: 50px;
-            margin-bottom: 20px;
-        }
-
-        .gold {
-            color: #d4af37;
+            font-size: 38px;
         }
 
         .hero p {
-            color: #cccccc;
-            font-size: 18px;
-            line-height: 1.7;
+            font-size: 16px;
         }
 
-        .button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 15px 30px;
-            background: #d4af37;
-            color: #111;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 30px;
-        }
-
-        .section {
-            max-width: 1100px;
-            margin: auto;
-            padding: 70px 20px;
+        .logo {
+            font-size: 25px;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 40px;
+            font-size: 28px;
         }
 
-        .products {
-            display: grid;
-            grid-template-columns: repeat(
-                auto-fit,
-                minmax(230px, 1fr)
-            );
-
-            gap: 25px;
+        .modal-content {
+            padding: 22px;
         }
+    }
+</style>
 
-        /*
-        ==========================================
-        PRODUCTOS
-        ==========================================
+</head><body><!-- ENCABEZADO -->
 
-        Cuando quieras agregar un perfume,
-        copia una tarjeta completa como esta:
+<header>
+    <div class="logo">
+        PRIME <span>ESSENCE</span>
+    </div>
 
-        <div class="product">
-            <div class="product-image">
-                FOTO
-            </div>
-
-            <h3>NOMBRE DEL PERFUME</h3>
-
-            <p>DESCRIPCIÓN DEL PERFUME</p>
-
-            <span class="price">$PRECIO</span>
-        </div>
-
-        ==========================================
-        */
-
-        .product {
-            background: #151515;
-            border: 1px solid #333;
-            border-radius: 18px;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .product-image {
-            height: 220px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            border-radius: 12px;
-            background: #0d0d0d;
-            border: 1px solid #333;
-
-            color: #666;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-
-        .product h3 {
-            font-size: 22px;
-            margin-bottom: 12px;
-        }
-
-        .product p {
-            color: #aaa;
-            line-height: 1.6;
-        }
-
-        .price {
-            display: block;
-            margin-top: 18px;
-            color: #d4af37;
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .order {
-            text-align: center;
-            padding: 70px 20px;
-            background: #111;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-        }
-
-        .order h2 {
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
-
-        .order p {
-            color: #aaa;
-            line-height: 1.6;
-        }
-
-        .whatsapp {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 15px 30px;
-
-            background: #d4af37;
-            color: #111;
-
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 30px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            background: #050505;
-            color: #777;
-        }
-
-        @media (max-width: 600px) {
-
-            .hero h1 {
-                font-size: 38px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .logo {
-                font-size: 25px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-        }
-    </style>
-</head>
+    <p>
+        La esencia que te distingue.
+    </p>
+</header>
 
 
-<body>
+<!-- PORTADA -->
 
-    <!-- ENCABEZADO -->
+<section class="hero">
 
-    <header>
+    <div class="hero-content">
 
-        <div class="logo">
-            PRIME <span>ESSENCE</span>
-        </div>
+        <h1>
+            PRIME
+            <span class="gold">ESSENCE</span>
+        </h1>
 
         <p>
-            La esencia que te distingue.
+            Descubre una nueva forma de llevar
+            tu esencia.
         </p>
 
-    </header>
+        <a href="#productos" class="button">
+            VER CATÁLOGO
+        </a>
+
+    </div>
+
+</section>
 
 
-    <!-- PORTADA -->
+<!-- CATÁLOGO -->
 
-    <section class="hero">
+<section class="section" id="productos">
 
-        <div class="hero-content">
+    <h2 class="section-title">
+        Nuestro
+        <span class="gold">catálogo</span>
+    </h2>
 
-            <h1>
-                PRIME
-                <span class="gold">ESSENCE</span>
-            </h1>
+    <div class="catalog-actions">
 
-            <p>
-                Descubre una nueva forma de llevar
-                tu esencia.
-            </p>
+        <button class="add-button" onclick="abrirFormulario()">
+            ＋ AGREGAR PRODUCTO
+        </button>
 
-            <a href="#productos" class="button">
-                VER CATÁLOGO
-            </a>
+    </div>
+
+    <div class="products" id="productsContainer">
+
+        <div class="empty" id="emptyMessage">
+            Todavía no hay productos.
+            <br><br>
+            Pulsa "Agregar producto" para comenzar.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PEDIDOS -->
+
+<section class="order">
+
+    <h2>
+        ¿Quieres hacer un pedido?
+    </h2>
+
+    <p>
+        Contáctanos para conocer nuestros
+        productos y realizar tu pedido.
+    </p>
+
+    <a
+        class="whatsapp"
+        href="https://wa.me/525577551628"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        PEDIR POR WHATSAPP
+
+    </a>
+
+</section>
+
+
+<!-- PIE DE PÁGINA -->
+
+<footer>
+
+    © 2026 Prime Essence
+
+    <br><br>
+
+    La esencia que te distingue.
+
+</footer>
+
+
+<!-- FORMULARIO -->
+
+<div class="modal" id="productModal">
+
+    <div class="modal-content">
+
+        <h2>
+            Agregar producto
+        </h2>
+
+        <div class="form-group">
+
+            <label for="productName">
+                Nombre del producto
+            </label>
+
+            <input
+                type="text"
+                id="productName"
+                placeholder="Ej. 1 Million">
 
         </div>
 
-    </section>
+
+        <div class="form-group">
+
+            <label for="productPrice">
+                Precio
+            </label>
+
+            <input
+                type="text"
+                id="productPrice"
+                placeholder="Ej. $850">
+
+        </div>
 
 
-    <!-- CATÁLOGO -->
+        <div class="form-group">
 
-    <section class="section" id="productos">
+            <label for="productDescription">
+                Descripción
+            </label>
 
-        <h2 class="section-title">
-            Nuestro
-            <span class="gold">catálogo</span>
-        </h2>
+            <textarea
+                id="productDescription"
+                placeholder="Describe el producto..."></textarea>
 
-
-        <!--
-        AQUÍ VAS A AGREGAR TUS PRODUCTOS.
-
-        Por ahora está vacío.
-        -->
+        </div>
 
 
-        <div class="products">
+        <div class="form-group">
 
-            <!--
-            EJEMPLO DE PRODUCTO:
+            <label for="productImage">
+                Foto del producto
+            </label>
 
-            <div class="product">
+            <input
+                type="file"
+                id="productImage"
+                accept="image/*">
 
-                <div class="product-image">
-                    AQUÍ VA LA FOTO
+        </div>
+
+
+        <div class="form-buttons">
+
+            <button
+                class="cancel-button"
+                onclick="cerrarFormulario()">
+
+                CANCELAR
+
+            </button>
+
+            <button
+                class="save-button"
+                onclick="guardarProducto()">
+
+                GUARDAR
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    let productos = JSON.parse(
+        localStorage.getItem("primeEssenceProductos")
+    ) || [];
+
+
+    function abrirFormulario() {
+
+        document.getElementById("productModal").style.display = "flex";
+
+    }
+
+
+    function cerrarFormulario() {
+
+        document.getElementById("productModal").style.display = "none";
+
+        document.getElementById("productName").value = "";
+        document.getElementById("productPrice").value = "";
+        document.getElementById("productDescription").value = "";
+        document.getElementById("productImage").value = "";
+
+    }
+
+
+    function guardarProducto() {
+
+        const nombre =
+            document.getElementById("productName").value.trim();
+
+        const precio =
+            document.getElementById("productPrice").value.trim();
+
+        const descripcion =
+            document.getElementById("productDescription").value.trim();
+
+        const archivo =
+            document.getElementById("productImage").files[0];
+
+
+        if (!nombre || !precio || !descripcion) {
+
+            alert("Completa el nombre, precio y descripción.");
+
+            return;
+
+        }
+
+
+        if (archivo) {
+
+            const lector = new FileReader();
+
+            lector.onload = function(e) {
+
+                crearProducto(
+                    nombre,
+                    precio,
+                    descripcion,
+                    e.target.result
+                );
+
+            };
+
+            lector.readAsDataURL(archivo);
+
+        } else {
+
+            crearProducto(
+                nombre,
+                precio,
+                descripcion,
+                ""
+            );
+
+        }
+
+    }
+
+
+    function crearProducto(
+        nombre,
+        precio,
+        descripcion,
+        imagen
+    ) {
+
+        const producto = {
+
+            id: Date.now(),
+
+            nombre: nombre,
+
+            precio: precio,
+
+            descripcion: descripcion,
+
+            imagen: imagen
+
+        };
+
+
+        productos.push(producto);
+
+
+        localStorage.setItem(
+            "primeEssenceProductos",
+            JSON.stringify(productos)
+        );
+
+
+        mostrarProductos();
+
+        cerrarFormulario();
+
+    }
+
+
+    function mostrarProductos() {
+
+        const container =
+            document.getElementById("productsContainer");
+
+        const emptyMessage =
+            document.getElementById("emptyMessage");
+
+
+        container.innerHTML = "";
+
+
+        if (productos.length === 0) {
+
+            container.innerHTML = `
+                <div class="empty">
+                    Todavía no hay productos.
+                    <br><br>
+                    Pulsa "Agregar producto" para comenzar.
                 </div>
+            `;
+
+            return;
+
+        }
+
+
+        productos.forEach(producto => {
+
+            const tarjeta =
+                document.createElement("div");
+
+            tarjeta.className = "product";
+
+
+            let imagenHTML = "";
+
+            if (producto.imagen) {
+
+                imagenHTML = `
+                    <img
+                        class="product-image"
+                        src="${producto.imagen}"
+                        alt="${producto.nombre}">
+                `;
+
+            } else {
+
+                imagenHTML = `
+                    <div class="product-image no-image">
+                        Sin fotografía
+                    </div>
+                `;
+
+            }
+
+
+            tarjeta.innerHTML = `
+
+                ${imagenHTML}
 
                 <h3>
-                    NOMBRE DEL PERFUME
+                    ${producto.nombre}
                 </h3>
 
                 <p>
-                    DESCRIPCIÓN
+                    ${producto.descripcion}
                 </p>
 
                 <span class="price">
-                    $000
+                    ${producto.precio}
                 </span>
 
-            </div>
+                <button
+                    class="delete-button"
+                    onclick="eliminarProducto(${producto.id})">
 
-            -->
+                    ELIMINAR
 
-        </div>
+                </button>
 
-    </section>
-
-
-    <!-- PEDIDOS -->
-
-    <section class="order">
-
-        <h2>
-            ¿Quieres hacer un pedido?
-        </h2>
-
-        <p>
-            Contáctanos para conocer nuestros
-            productos y realizar tu pedido.
-        </p>
-
-        <a
-            class="whatsapp"
-            href="https://wa.me/525577551628"
-            target="_blank"
-            rel="noopener noreferrer">
-
-            PEDIR POR WHATSAPP
-
-        </a>
-
-    </section>
+            `;
 
 
-    <!-- PIE DE PÁGINA -->
+            container.appendChild(tarjeta);
 
-    <footer>
+        });
 
-        © 2026 Prime Essence
+    }
 
-        <br><br>
 
-        La esencia que te distingue.
+    function eliminarProducto(id) {
 
-    </footer>
+        const confirmar =
+            confirm("¿Quieres eliminar este producto?");
+
+
+        if (!confirmar) {
+
+            return;
+
+        }
+
+
+        productos =
+            productos.filter(producto => producto.id !== id);
+
+
+        localStorage.setItem(
+            "primeEssenceProductos",
+            JSON.stringify(productos)
+        );
+
+
+        mostrarProductos();
+
+    }
+
+
+    document.getElementById("productModal")
+        .addEventListener("click", function(e) {
+
+            if (e.target === this) {
+
+                cerrarFormulario();
+
+            }
+
+        });
+
+
+    mostrarProductos();
+
+</script>
 
 </body>
 </html>
